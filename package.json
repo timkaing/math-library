@@ -1,15 +1,23 @@
 {
-  "name": "math-lib",
+  "name": "tk-math-library",
   "version": "1.0.0",
   "description": "a random math library",
-  "main": "index.js",
+  "main": "umd/index.js",
+  "module": "esm/index.js",
+  "files": [
+    "esm/*",
+    "emd/*"
+  ],
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "prepare": "rollup --config"
   },
   "author": "daisukiyo",
   "license": "ISC",
   "devDependencies": {
     "eslint": "^6.1.0",
-    "jest": "^24.8.0"
+    "jest": "^24.8.0",
+    "rollup": "^1.19.4",
+    "rollup-plugin-terser": "^5.1.1"
   }
 }

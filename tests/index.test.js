@@ -13,12 +13,17 @@ const {
     randomColor,
 } = require('../src/index');
 
+let global;
+const mockMath = Object.create(global.Math);
+global.Math = mockMath;
+mockMath.random = () => 0.5;
+
 test('Sanity Check', () => {
     // this test passes
 })
 
 test('Pad left and right with # of 0', () => {
-    expect(pad(1, 2, 2).toEqual('01.00'))
+    expect(pad(1, 2, 2)).toEqual('01.00')
 })
 
 test('Degrees to Radians', () => {
@@ -58,11 +63,11 @@ test('Calculate with Tax', () => {
 })
 
 test('Calculate Interest', () => {
-    expect(interest(0, 0, 0)).toEqual(0);
+    expect(interest(1, 2, 3)).toBe("1.06");
 })
 
 test('Calculate Mortgage', () => {
-    expect(mortgage(0,0,0)).toEqual(0);
+    expect(mortgage(1,2,3)).toBe(3.2);
 })
 
 test('Binary to Hexadecimal', () => {
@@ -78,5 +83,6 @@ test('Random Number between Range', () => {
 })
 
 test('Random Color', () => {
-    expect(randomColor().toEqual());
+    mockMath.random = () => 0;
+    expect(randomColor()).toBe('#000000');
 })
